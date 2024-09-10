@@ -4,7 +4,7 @@
 
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
-3. [Setup](#setup)
+3. [Setup and Installation](#setup-and-installation)
 4. [Usage](#usage)
 5. [Features](#features)
 6. [Code Structure](#code-structure)
