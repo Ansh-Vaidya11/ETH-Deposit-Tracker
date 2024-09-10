@@ -1,16 +1,19 @@
 # Ethereum Deposit Tracker
 
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Prerequisites](#prerequisites)
+3. [Setup](#setup)
+4. [Usage](#usage)
+5. [Features](#features)
+6. [Code Structure](#code-structure)
+7. [Error Handling](#error-handling)
+8. [Logging](#logging)
+
 ## Overview
 
 The Ethereum Deposit Tracker is a Python-based application that monitors and tracks deposits made to the Ethereum 2.0 Beacon Chain Deposit Contract. It processes new blocks, extracts deposit information, stores it in a MySQL database, and sends notifications via Telegram.
-
-## Features
-
-- Real-time tracking of Ethereum 2.0 deposits
-- MySQL database storage for deposit information
-- Telegram bot integration for notifications
-- Handling of blockchain reorganizations
-- Subscription management for Telegram notifications
 
 ## Prerequisites
 
@@ -18,8 +21,14 @@ The Ethereum Deposit Tracker is a Python-based application that monitors and tra
 - MySQL database
 - Ethereum node access (via Alchemy or Infura)
 - Telegram Bot Token
+- Required Python packages: 
+  - web3
+  - python-dotenv
+  - mysql-connector-python
+  - eth-abi
+  - python-telegram-bot
 
-## Installation
+## Setup and Installation
 
 1. Clone the repository:
    ```
@@ -44,12 +53,46 @@ The Ethereum Deposit Tracker is a Python-based application that monitors and tra
    TELEGRAM_BOT_TOKEN=your_telegram_bot_token
    ```
 
+4. Set up the MySQL database:
+   The application will automatically create the necessary tables when run for the first time.
+
 ## Usage
 
 Run the main script:
 ```
 python main.py
 ```
+
+## Features
+
+1. **Real-time Ethereum Block Monitoring**: Continuously checks for new blocks on the Ethereum blockchain.
+
+2. **Deposit Detection**: Identifies transactions made to the Beacon Chain Deposit Contract.
+
+3. **Data Extraction**: Extracts relevant information from deposit transactions, including block number, timestamp, fee, transaction hash, and public key.
+
+4. **Database Storage**: Stores deposit information in a MySQL database for persistence and querying.
+
+5. **Telegram Bot Integration**: 
+   - Sends notifications about new deposits to subscribed users.
+   - Supports commands:
+     - `/subscribe`: Subscribe to deposit notifications
+     - `/unsubscribe`: Unsubscribe from deposit notifications
+     - `/test_notification`: Send a test notification
+
+6. **Blockchain Reorganization Handling**: Detects and handles blockchain reorganizations to maintain data accuracy.
+
+7. **Error Handling and Logging**: Comprehensive error handling and logging for debugging and monitoring.
+
+## Code Structure
+
+- `DepositTracker` class: Main class handling the core functionality.
+  - `create_tables()`: Sets up the necessary database tables.
+  - `setup_telegram_bot()`: Initializes the Telegram bot and sets up command handlers.
+  - `process_block()`: Processes a single Ethereum block for deposits.
+  - `handle_reorg()`: Handles blockchain reorganizations.
+  - `send_notification()`: Sends Telegram notifications for new deposits.
+  - `run()`: Main loop for continuous block processing.
 
 ## Telegram Bot Commands
 
@@ -87,5 +130,10 @@ python main.py
 5. `send_notification()`: Sends Telegram notifications for new deposits
 
 ## Error Handling and Logging
+
+- Database connection errors are caught and logged.
+- Transaction processing errors are caught and logged, allowing the system to continue processing other transactions.
+- Blockchain reorganization handling helps maintain data integrity.
+- The application uses Python's logging module to log information, warnings, and errors. Logs are formatted with timestamps and log levels, aiding in debugging and monitoring.
 
 The application uses Python's logging module to log information, warnings, and errors. Logs are formatted with timestamps and log levels.
