@@ -1,5 +1,6 @@
 # Ethereum Deposit Tracker
 
+
 ## Table of Contents
 
 1. [Overview](#overview)
@@ -11,9 +12,11 @@
 7. [Error Handling](#error-handling)
 8. [Logging](#logging)
 
+
 ## Overview
 
 The Ethereum Deposit Tracker is a Python-based application that monitors and tracks deposits made to the Ethereum 2.0 Beacon Chain Deposit Contract. It processes new blocks, extracts deposit information, stores it in a MySQL database, and sends notifications via Telegram.
+
 
 ## Prerequisites
 
@@ -27,6 +30,7 @@ The Ethereum Deposit Tracker is a Python-based application that monitors and tra
   - mysql-connector-python
   - eth-abi
   - python-telegram-bot
+
 
 ## Setup and Installation
 
@@ -56,12 +60,14 @@ The Ethereum Deposit Tracker is a Python-based application that monitors and tra
 4. Set up the MySQL database:
    The application will automatically create the necessary tables when run for the first time.
 
+
 ## Usage
 
 Run the main script:
 ```
 python main.py
 ```
+
 
 ## Features
 
@@ -84,6 +90,7 @@ python main.py
 
 7. **Error Handling and Logging**: Comprehensive error handling and logging for debugging and monitoring.
 
+
 ## Code Structure
 
 - `DepositTracker` class: Main class handling the core functionality.
@@ -94,11 +101,13 @@ python main.py
   - `send_notification()`: Sends Telegram notifications for new deposits.
   - `run()`: Main loop for continuous block processing.
 
+
 ## Telegram Bot Commands
 
 - `/subscribe`: Subscribe to deposit notifications
 - `/unsubscribe`: Unsubscribe from deposit notifications
 - `/test_notification`: Send a test notification
+
 
 ## Database Schema
 
@@ -121,6 +130,7 @@ python main.py
 - `chat_id`: Telegram chat ID (primary key)
 - `subscribed_at`: Subscription timestamp
 
+
 ## Main Components
 
 1. `DepositTracker`: Main class handling deposit tracking and processing
@@ -128,6 +138,7 @@ python main.py
 3. `process_block()`: Processes a single Ethereum block for deposits
 4. `handle_reorg()`: Handles blockchain reorganizations
 5. `send_notification()`: Sends Telegram notifications for new deposits
+
 
 ## Error Handling and Logging
 
